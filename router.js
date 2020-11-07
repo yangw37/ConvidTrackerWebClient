@@ -1,7 +1,25 @@
 
 var express = require('express')
 var Admin = require('./admin')
+var Client = require('./client')
 var router = express.Router()
+
+// router.get('/testdataset', function(req, res){
+    
+//     Client.findOne({
+//     $or: [{
+//             client_mac: "1A:2B:3C:4D:5E:6F"
+//         }
+//     ]
+//     }, function (err, data) {
+//     if (err)  {
+//         console.log("error test")
+//     }
+
+//     console.log(data)
+//     })
+
+// })
 
 router.get('/', function(req, res){
     res.render("index.html", {

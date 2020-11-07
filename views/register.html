@@ -14,7 +14,7 @@
       <a href="/">
         <img src="/public/img/logo3.png" alt="">
       </a>
-      <h1>用户注册</h1>
+      <h1>Register</h1>
     </div>
     <!-- 
       表单具有默认的提交行为，默认是同步的，同步表单提交，浏览器会锁死（转圈儿）等待服务端的响应结果。
@@ -24,21 +24,21 @@
      -->
     <form id="register_form" method="post" action="/register">
       <div class="form-group">
-        <label for="email">邮箱</label>
+        <label for="email">Email</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="Email" autofocus>
       </div>
       <div class="form-group">
-        <label for="userid">昵称</label>
+        <label for="userid">UserID</label>
         <input type="text" class="form-control" id="userid" name="userid" placeholder="Userid">
       </div>
       <div class="form-group">
-        <label for="password">密码</label>
+        <label for="password">Password</label>
         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
       </div>
-      <button type="submit" class="btn btn-success btn-block">注册</button>
+      <button type="submit" class="btn btn-success btn-block">Register</button>
     </form>
     <div class="message">
-      <p>已有账号? <a href="/login">点击登录</a>.</p>
+      <p>Already have account? <a href="/login">Login</a>.</p>
     </div>
   </div>
   <script src="/node_modules/jquery/jquery.js"></script>
