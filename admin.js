@@ -38,5 +38,31 @@ var userSchema = new Schema({
     }
   })
 
+// var userCollection = mongoose.model('User', userSchema)
 
-module.exports = mongoose.model('User', userSchema)
+// var dataSchema = new mongoose.Schema({})
+// var testCollection = mongoose.model('testmodel', dataSchema, 'test')
+
+// testCollection.findOne({
+//   $or: [{
+//         cola: "a"
+//     },
+//     {
+//         colb: "b"
+//     }
+// ]
+// }, function (err, data) {
+//   if (err)  {
+//     console.log("error test")
+//   }
+
+//   console.log(data)
+// })
+
+
+
+// module.exports = {
+//   userCollection,
+//   testCollection
+// }
+module.exports = mongoose.model('Admin', userSchema)

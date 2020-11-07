@@ -42,7 +42,7 @@
 
                     <div class="clearfix"></div>
 
-                    {{ if user }}
+                    {{ if admin }}
                         <!-- menu profile quick info -->
                         <div class="profile clearfix">
                             <div class="profile_pic">
@@ -50,7 +50,7 @@
                             </div>
                             <div class="profile_info">
                                 <span>Welcome,</span>
-                                <h2>{{user.userid}}</h2>
+                                <h2>{{admin.userid}}</h2>
                             </div>
                         </div>
                     {{ else }}
@@ -67,12 +67,8 @@
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
 
-                                        {{ if user && user.userType == 1 }}
+                                        {{ if admin }}
                                         <li><a href="index3.html">Report</a></li>
-                                        <li><a href="/logout">Logout</a></li>
-
-                                        {{ else if user }}
-                                        
                                         <li><a href="/logout">Logout</a></li>
 
                                         {{ else }}
