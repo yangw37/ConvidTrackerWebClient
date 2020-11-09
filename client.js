@@ -7,7 +7,13 @@ mongoose.connect(process.env.DB_CONNECTION,{ useUnifiedTopology: true,useNewUrlP
   })
 
 
-var clientSchema = new mongoose.Schema({})
+var clientSchema = new mongoose.Schema({
+  client_mac: String,
+  blt_macs: Array,
+  positive_status: Number,
+  status: String
+
+})
 var clintCollection = mongoose.model('clientModel', clientSchema, 'User')
 
 // clintCollection.findOne({

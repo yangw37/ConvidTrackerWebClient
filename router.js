@@ -4,22 +4,53 @@ var Admin = require('./admin')
 var Client = require('./client')
 var router = express.Router()
 
-// router.get('/testdataset', function(req, res){
+router.get('/recordv2', function(req, res) {
+    res.render("recordv2.html", {
+        admin: req.session.admin
+    })
+})
+
+router.post('/recordv2', function(req, res){
+    var body = req.body
     
-//     Client.findOne({
-//     $or: [{
-//             client_mac: "1A:2B:3C:4D:5E:6F"
-//         }
-//     ]
-//     }, function (err, data) {
-//     if (err)  {
-//         console.log("error test")
-//     }
+    Client.findOne({
+        $or: [{
+            client_mac: body.macAddress
+        }]
+    }, function (err, data){
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: 'Server error'
+            })
+        }
+        if (data) {
+            // update status
+            data.status = body.status
 
-//     console.log(data)
-//     })
+            Client.findByIdAndUpdate(data._id, data, {new: true}, function (err, ret) {
+                if (err) {
+                    return res.status(500).json({
+                        err_code: 500,
+                        message: 'Internal error.'
+                    })
+                } else {
+                    res.status(200).json({
+                        err_code: 0,
+                        message: 'OK'
+                    })
+                }
+            })
+        }
 
-// })
+        if (!data){
+            return res.status(200).json({
+                err_code: 1,
+                message: 'Mac Address Does Not Exists.'
+            })
+        }
+    })
+})
 
 router.get('/', function(req, res){
     res.render("index.html", {
@@ -33,7 +64,6 @@ router.get('/register', function (req, res) {
 
 router.post('/register', function (req, res) {
     var body = req.body
-    console.log(body)
 
     Admin.findOne({
         $or: [{
@@ -66,9 +96,7 @@ router.post('/register', function (req, res) {
                 })
             }
 
-
             req.session.admin = admin
-            console.log("here")
             res.status(200).json({
                 err_code: 0,
                 message: 'OK'
@@ -83,10 +111,6 @@ router.get('/login', function (req, res) {
 })
 
 router.post('/login', function (req, res) {
-    // 1. 获取表单数据
-    // 2. 查询数据库用户名密码是否正确
-    // 3. 发送响应数据
-    console.log("try to login")
     var body = req.body
   
     Admin.findOne({
@@ -125,6 +149,7 @@ router.get('/logout', function (req, res) {
     // 重定向到登录页
     res.redirect('/login')
 })
+
 
 
 module.exports = router
