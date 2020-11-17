@@ -11,7 +11,9 @@ var clientSchema = new mongoose.Schema({
   client_mac: String,
   blt_macs: Array,
   positive_status: Number,
-  status: String
+  status: String,
+  modifier: String,
+  last_modify_time: Date
 
 })
 var clintCollection = mongoose.model('clientModel', clientSchema, 'User')
